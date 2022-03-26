@@ -9,6 +9,7 @@ const Home = () => {
     return (
         <div className="container">
             <h1>Rhyme Finder (579 Problem Set 6)</h1>
+            <a href="https://github.com/irene970617/SI579hw6">https://github.com/irene970617/SI579hw6</a>
             <Save save={save} />
             <Input search={setWord} />
             <List word={word} saveWord={setSave} />
