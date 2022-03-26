@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SI579hw6/static/css/main.e4889cbf.css",
+    "main.js": "/SI579hw6/static/js/main.332d7be1.js",
+    "index.html": "/SI579hw6/index.html",
+    "main.e4889cbf.css.map": "/SI579hw6/static/css/main.e4889cbf.css.map",
+    "main.332d7be1.js.map": "/SI579hw6/static/js/main.332d7be1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4889cbf.css",
+    "static/js/main.332d7be1.js"
+  ]
+}
