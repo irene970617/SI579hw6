@@ -5,6 +5,7 @@ import { useState } from "react";
 const Home = () => {
     const [word, setWord] = useState([]);
     const [save, setSave] = useState("");
+    
 
     return (
         <div className="container">
@@ -12,7 +13,7 @@ const Home = () => {
             <a href="https://github.com/irene970617/SI579hw6">https://github.com/irene970617/SI579hw6</a>
             <Save save={save} />
             <Input search={setWord} />
-            <List word={word} saveWord={setSave} />
+            <List  word={word} saveWord={setSave} />
         </div>
     );
 };

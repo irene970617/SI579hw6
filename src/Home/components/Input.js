@@ -1,6 +1,6 @@
 import { useState } from "react";
-const Input = ({ search }) => {
-
+const Input = ({ search}) => {
+    const [spinner, setSpinner] = useState("");
     const [note, setNote] = useState("");
     function noteChange(e) {
         setNote(e.target.value);
@@ -30,14 +30,17 @@ const Input = ({ search }) => {
     }
 
     function datamuseRequest(url, callback) {
-
+        
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 callback(data);
             }, (err) => {
                 console.error(err);
-            });
+            })
+            .then(function(data){
+                setSpinner("");
+                });
     }
 
     function getDatamuseRhymeUrl(rel_rhy) {
@@ -51,6 +54,7 @@ const Input = ({ search }) => {
 
     function searchRhymes() {
 
+        setSpinner("...loading");
         datamuseRequest(getDatamuseRhymeUrl(), (rhymeData) => {
             if (rhymeData.length == 0) {
                 return search(function () {
@@ -68,6 +72,7 @@ const Input = ({ search }) => {
     }
 
     function searchSimilar() {
+        setSpinner("...loading");
         datamuseRequest(getDatamuseSimilarToUrl(), (similarData) => {
             if (similarData.length == 0) {
                 return search(function () {
@@ -82,14 +87,21 @@ const Input = ({ search }) => {
 
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          searchRhymes()
+        }
+      }
     return (
         <div>
             <div className="input-group col">
-                <input className="form-control" type="text" value={note} onChange={noteChange} placeholder="Enter a word" id="word_input" />
+                <input onKeyDown={handleKeyDown} className="form-control" type="text" value={note} onChange={noteChange} placeholder="Enter a word" id="word_input" />
                 <button onClick={searchRhymes} id="show_rhymes" type="button" className="btn btn-primary">Show rhyming words</button>
                 <button onClick={searchSimilar} id="show_synonyms" type="button" className="btn btn-secondary">Show synonyms</button>
             </div>
+            <div> {spinner}</div>
         </div>
+        
     );
 };
 

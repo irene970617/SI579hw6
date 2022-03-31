@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 
-const List = ({ word, saveWord }) => {
+const List = ({ word, saveWord}) => {
 
     function saveWords(e) {
         let w = e.target.parentNode.getAttribute("id")
@@ -17,6 +17,7 @@ const List = ({ word, saveWord }) => {
     let result = []
 
     if (word[1] == "rhyme") {
+
         result.push(<h1 key={v4()}>Words that rhyme with : {word[0]}</h1>)
         if (word[2]=="no result"){
             result.push(<div key={v4()}>{word[2]}</div>)
@@ -25,10 +26,12 @@ const List = ({ word, saveWord }) => {
             for (let i = 1; i <= Object.keys(word[2]).length; i++) {
                 let wordList = []
                 result.push(<h3 key={v4()}> Syllables: {i} </h3>)
+                if (word[2][i]== undefined){continue}
                 for (let j = 1; j <word[2][i].length; j++) {
+                    if (word[2][i][j]== undefined){continue}
                     wordList.push(word[2][i][j]['word'])
                 }
-                result.push(<ul>{wordList.map((w) => <li id={w} key={v4()}>{w}<button onClick={saveWords} type="button" className="btn btn-success btn-sm"> (save) </button></li>)}</ul>)
+                result.push(<ul key={v4()}>{wordList.map((w) => <li id={w} key={v4()}>{w}<button onClick={saveWords} type="button" className="btn btn-success btn-sm"> (save) </button></li>)}</ul>)
             }
         }
         
@@ -46,7 +49,7 @@ const List = ({ word, saveWord }) => {
                 wordList.push(word[2][i]['word'])
             }
     
-            result.push(<ul>{wordList.map((w) => <li id={w} key={v4()}>{w}<button onClick={saveWords} type="button" className="btn btn-success btn-sm"> (save) </button></li>)}</ul>)
+            result.push(<ul key={v4()}>{wordList.map((w) => <li id={w} key={v4()}>{w}<button onClick={saveWords} type="button" className="btn btn-success btn-sm"> (save) </button></li>)}</ul>)
     
         }
        
@@ -54,6 +57,7 @@ const List = ({ word, saveWord }) => {
     
     return (
         <div>
+            
             {result}
         </div>
     );
